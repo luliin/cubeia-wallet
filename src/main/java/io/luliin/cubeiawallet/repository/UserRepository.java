@@ -8,4 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * Date: 2024-09-30
  */
 public interface UserRepository extends JpaRepository<User, Long> {
+
+    boolean existsByEmail(String email);
 }

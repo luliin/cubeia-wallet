@@ -1,5 +1,6 @@
 package io.luliin.cubeiawallet.model;
 
+import io.luliin.cubeiawallet.response.UserDTO;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -9,7 +10,7 @@ import java.time.LocalDateTime;
  * Date: 2024-09-30
  */
 @Entity
-
+@Table(name = "app_user")
 public class User {
 
     @Id
@@ -27,10 +28,8 @@ public class User {
         this.createdAt = LocalDateTime.now();
     }
 
-    public User(Long id, String email, LocalDateTime createdAt) {
-        this.id = id;
+    public User(String email) {
         this.email = email;
-        this.createdAt = createdAt;
     }
 
     public User() {
@@ -58,5 +57,9 @@ public class User {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public UserDTO toDTO() {
+        return new UserDTO(this.id, this.email);
     }
 }
