@@ -137,6 +137,26 @@ Here are some example cURL commands to interact with the API:
    curl -X GET "http://localhost:8080/api/v1/transactions/1?userId=1"
    ```
 
+---
+
+## Known Shortcuts and Considerations
+
+This implementation contains some shortcuts and simplifications to meet the time constraints of the coding challenge. Below are the key points outlining the decisions made:
+
+1. **Validation Instead of Full Security:**
+   Instead of implementing a complete security infrastructure (e.g., OAuth or JWT authentication), validation has been used to ensure that the correct user interacts with the correct account. This approach simplifies the codebase and accelerates development but is not suitable for production environments where security protocols should be strictly enforced.
+
+2. **Implicit Account Creation:**
+   Accounts are created implicitly if they do not exist when performing a transfer. This shortcut has been taken to make testing easier and more fluid. However, in a real-world scenario, strict control over account creation is crucial, and implicit creation is not advisable.
+
+3. **Simplified Error Handling:**
+   Error handling has been simplified by using basic exceptions, and more granular error management (such as custom error codes or detailed logs) has not been implemented. In a production system, more robust error-handling mechanisms would be necessary.
+
+4. **Performance Optimizations:**
+   This solution does not include certain performance optimizations, such as caching or optimized database queries, that could be necessary for larger-scale systems. These could be addressed in further development iterations.
+
+By documenting these considerations, I acknowledge that certain aspects of this implementation could be improved in a real-world scenario, and I have outlined potential improvements where appropriate.
+
 ## Additional Information
 
 - This project uses **H2** as the database for simplicity.
