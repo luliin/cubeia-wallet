@@ -1,5 +1,6 @@
 package io.luliin.cubeiawallet.service;
 
+import io.luliin.cubeiawallet.exception.AccountNotFoundException;
 import io.luliin.cubeiawallet.model.Account;
 import io.luliin.cubeiawallet.repository.AccountRepository;
 import io.luliin.cubeiawallet.request.CreateAccountRequest;
@@ -25,7 +26,11 @@ public class AccountService {
 
     public BigDecimal getBalance(Long accountId, Long userId) {
         validationService.validateAccountUser(accountId, userId);
-        return accountRepository.findBalanceByAccountId(accountId);
+
+        Account account = accountRepository.findById(accountId)
+                .orElseThrow(() -> new AccountNotFoundException("Account not found"));
+
+        return account.getBalance();
     }
 
     public AccountDTO createAccount(CreateAccountRequest createAccountRequest) {

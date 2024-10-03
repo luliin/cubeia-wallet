@@ -24,6 +24,9 @@ public class Account {
     @Column(nullable = false)
     private BigDecimal balance;
 
+    @Version
+    private Integer version;
+
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
@@ -32,6 +35,18 @@ public class Account {
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     @PreUpdate
