@@ -36,7 +36,7 @@ public class TransactionService {
 
         User performedBy = validationService.getUserById(transferRequest.userId());
         Account fromAccount = validationService.getAccountById(transferRequest.fromAccountId());
-        Account toAccount = validationService.getAccountById(transferRequest.toAccountId());
+        Account toAccount = validationService.getOrCreateAccountForUser(transferRequest.toAccountId(), performedBy);
 
         if (fromAccount.getBalance().compareTo(transferRequest.amount()) < 0) {
             throw new InsufficientFundsException("Insufficient funds");

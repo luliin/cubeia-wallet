@@ -10,6 +10,8 @@ import io.luliin.cubeiawallet.repository.AccountRepository;
 import io.luliin.cubeiawallet.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
 /**
  * @author Julia Wigenstedt
  * Date: 2024-10-03
@@ -50,4 +52,16 @@ public class ValidationService {
         }
     }
 
+    public Account getOrCreateAccountForUser(Long accountId, User user) {
+        return accountRepository.findById(accountId)
+                .orElseGet(() -> createAccountForUser(accountId, user));
+    }
+
+    private Account createAccountForUser(Long accountId, User user) {
+        Account newAccount = new Account();
+        newAccount.setId(accountId);
+        newAccount.setUser(user);
+        newAccount.setBalance(BigDecimal.ZERO);
+        return accountRepository.save(newAccount);
+    }
 }
