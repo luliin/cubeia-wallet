@@ -35,9 +35,4 @@ public class AccountController {
         return ResponseEntity.ok(accountService.getBalance(accountId, userId));
     }
 
-    @PutMapping("/transfer")
-    public ResponseEntity<Void> transferFunds(@RequestBody TransferRequest transferRequest) {
-        accountService.transferFunds(transferRequest);
-        return ResponseEntity.ok().build();
-    }
 }

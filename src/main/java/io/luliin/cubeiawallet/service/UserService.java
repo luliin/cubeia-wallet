@@ -15,21 +15,17 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final ValidationService validationService;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, ValidationService validationService) {
         this.userRepository = userRepository;
+        this.validationService = validationService;
     }
 
     public UserDTO createUser(CreateUserRequest createUserRequest) {
-        validateEmailIsAvailable(createUserRequest.email());
+        validationService.validateEmailIsAvailable(createUserRequest.email());
 
         User user = new User(createUserRequest.email());
         return userRepository.save(user).toDTO();
-    }
-
-    private void validateEmailIsAvailable(String email) {
-        if (userRepository.existsByEmail(email)) {
-            throw new EmailAlreadyInUseException("Email is already in use");
-        }
     }
 }
