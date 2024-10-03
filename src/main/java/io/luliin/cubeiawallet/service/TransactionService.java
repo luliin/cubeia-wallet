@@ -74,6 +74,8 @@ public class TransactionService {
 
         account.setBalance(account.getBalance().subtract(transactionRequest.amount()));
         Transaction transaction = new Transaction(account, transactionRequest.amount().negate(), validationService.getUserById(transactionRequest.userId()));
+
+        accountRepository.save(account);
         transactionRepository.save(transaction);
     }
 
@@ -84,6 +86,8 @@ public class TransactionService {
 
         account.setBalance(account.getBalance().add(transactionRequest.amount()));
         Transaction transaction = new Transaction(account, transactionRequest.amount(), validationService.getUserById(transactionRequest.userId()));
+
+        accountRepository.save(account);
         transactionRepository.save(transaction);
     }
 }
