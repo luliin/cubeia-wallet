@@ -62,6 +62,7 @@ public class ValidationService {
         newAccount.setId(accountId);
         newAccount.setUser(user);
         newAccount.setBalance(BigDecimal.ZERO);
+        newAccount.setVersion(0);
         return accountRepository.save(newAccount);
     }
 }

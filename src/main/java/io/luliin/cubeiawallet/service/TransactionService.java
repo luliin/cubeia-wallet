@@ -36,6 +36,9 @@ public class TransactionService {
 
         User performedBy = validationService.getUserById(transferRequest.userId());
         Account fromAccount = validationService.getAccountById(transferRequest.fromAccountId());
+
+        // If toAccount does not exist, a new account will be created with the current user as owner
+        // This is of course highly irregular and is only implemented to simplify testing
         Account toAccount = validationService.getOrCreateAccountForUser(transferRequest.toAccountId(), performedBy);
 
         if (fromAccount.getBalance().compareTo(transferRequest.amount()) < 0) {
