@@ -8,7 +8,6 @@ import org.springframework.data.repository.query.Param;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author Julia Wigenstedt
@@ -17,7 +16,6 @@ import java.util.Optional;
 public interface AccountRepository extends JpaRepository<Account, Long> {
     @Query("SELECT a.balance FROM Account a WHERE a.id = :accountId")
     BigDecimal findBalanceByAccountId(@Param("accountId") Long accountId);
-    List<Account> findAccountsByUser(User user);
 
     boolean existsByUserAndId(User user, Long id);
 }

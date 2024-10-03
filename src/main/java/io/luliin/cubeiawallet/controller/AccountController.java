@@ -1,7 +1,6 @@
 package io.luliin.cubeiawallet.controller;
 
 import io.luliin.cubeiawallet.request.CreateAccountRequest;
-import io.luliin.cubeiawallet.request.TransferRequest;
 import io.luliin.cubeiawallet.response.AccountDTO;
 import io.luliin.cubeiawallet.service.AccountService;
 import org.springframework.http.HttpStatus;

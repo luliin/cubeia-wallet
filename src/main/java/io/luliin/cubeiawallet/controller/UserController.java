@@ -1,6 +1,5 @@
 package io.luliin.cubeiawallet.controller;
 
-import io.luliin.cubeiawallet.repository.UserRepository;
 import io.luliin.cubeiawallet.request.CreateUserRequest;
 import io.luliin.cubeiawallet.response.UserDTO;
 import io.luliin.cubeiawallet.service.UserService;

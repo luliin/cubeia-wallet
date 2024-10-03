@@ -1,6 +1,5 @@
 package io.luliin.cubeiawallet.service;
 
-import io.luliin.cubeiawallet.exception.EmailAlreadyInUseException;
 import io.luliin.cubeiawallet.model.User;
 import io.luliin.cubeiawallet.repository.UserRepository;
 import io.luliin.cubeiawallet.request.CreateUserRequest;
