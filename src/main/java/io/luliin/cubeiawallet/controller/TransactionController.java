@@ -39,7 +39,10 @@ public class TransactionController {
         return ResponseEntity.ok().build();
     }
 
-    @Operation(summary = "Transfer funds", description = "Transfers funds between accounts.")
+    @Operation(
+            summary = "Transfer funds",
+            description = "Transfers funds between accounts. If the 'toAccount' does not exist, it will be implicitly created."
+    )
     @PutMapping("/transfer")
     public ResponseEntity<Void> transferFunds(@RequestBody TransferRequest transferRequest) {
         transactionService.transferFunds(transferRequest);
