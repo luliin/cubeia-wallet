@@ -1,6 +1,3 @@
-Här är ett förslag till en README-fil i markdown (MD) för ditt projekt:
-
-```md
 # Cubeia Wallet Application
 
 This is a Java wallet application designed for handling basic bookkeeping operations. The application allows users to create accounts, transfer funds, check balances, and list transactions. It is implemented using Java 21, Spring Boot, and provides a REST API to interact with the wallet service.
@@ -35,14 +32,13 @@ To simplify running the application, you can use Docker. Follow these steps:
 
    The application will now be accessible at `http://localhost:8080`.
 
-
 3. **Access Swagger Documentation:**
 
-Once the application is running, you can access the automatically generated Swagger documentation for the API at:
+   Once the application is running, you can access the automatically generated Swagger documentation for the API at:
 
-Swagger UI: http://localhost:8080/swagger-ui/index.html
+   Swagger UI: [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
 
-API Specification: You can download or view the OpenAPI specification directly from the Swagger interface.
+   API Specification: You can download or view the OpenAPI specification directly from the Swagger interface.
 
 ### Timezone Configuration
 
@@ -90,36 +86,56 @@ Maven will automatically compile the tests and execute them.
 
 As previously mentioned, the API documentation is auto-generated and available through Swagger once the application is running.
 
-- **Swagger UI**: `http://localhost:8080/swagger-ui/index.html`
+- **Swagger UI**: [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
 
-### Key Endpoints:
+### Example Usage via cURL
 
-1. **Create User**:  
-   `POST /api/v1/user`  
-   Payload: `{ "email": "test@example.com" }`
+Here are some example cURL commands to interact with the API:
 
-2. **Create Account**:  
-   `POST /api/v1/account/create`  
-   Payload: `{ "userId": 1, "initialBalance": 100.00 }`
+1. **Create User**:
+   ```bash
+   curl -X POST http://localhost:8080/api/v1/user \
+   -H "Content-Type: application/json" \
+   -d '{"email": "test@example.com"}'
+   ```
 
-3. **Get Account Balance**:  
-   `GET /api/v1/account/balance/{accountId}?userId={userId}`
+2. **Create Account**:
+   ```bash
+   curl -X POST http://localhost:8080/api/v1/account/create \
+   -H "Content-Type: application/json" \
+   -d '{"userId": 1, "initialBalance": 100.00}'
+   ```
 
-4. **Transfer Funds**:  
-   `PUT /api/v1/transactions/transfer`  
-   Payload: `{ "fromAccountId": 1, "toAccountId": 2, "userId": 1, "amount": 50.00 }`  
-   *Note: If the target account (`toAccountId`) doesn't exist, it will be created automatically.*
+3. **Get Account Balance**:
+   ```bash
+   curl -X GET "http://localhost:8080/api/v1/account/balance/1?userId=1"
+   ```
 
-5. **Withdraw Funds**:  
-   `PUT /api/v1/transactions/withdraw`  
-   Payload: `{ "accountId": 1, "userId": 1, "amount": 50.00 }`
+4. **Transfer Funds**:
+   ```bash
+   curl -X PUT http://localhost:8080/api/v1/transactions/transfer \
+   -H "Content-Type: application/json" \
+   -d '{"fromAccountId": 1, "toAccountId": 2, "userId": 1, "amount": 50.00}'
+   ```
 
-6. **Deposit Funds**:  
-   `PUT /api/v1/transactions/deposit`  
-   Payload: `{ "accountId": 1, "userId": 1, "amount": 100.00 }`
+5. **Withdraw Funds**:
+   ```bash
+   curl -X PUT http://localhost:8080/api/v1/transactions/withdraw \
+   -H "Content-Type: application/json" \
+   -d '{"accountId": 1, "userId": 1, "amount": 50.00}'
+   ```
 
-7. **Get Transaction History**:  
-   `GET /api/v1/transactions/{accountId}?userId={userId}`
+6. **Deposit Funds**:
+   ```bash
+   curl -X PUT http://localhost:8080/api/v1/transactions/deposit \
+   -H "Content-Type: application/json" \
+   -d '{"accountId": 1, "userId": 1, "amount": 100.00}'
+   ```
+
+7. **Get Transaction History**:
+   ```bash
+   curl -X GET "http://localhost:8080/api/v1/transactions/1?userId=1"
+   ```
 
 ## Additional Information
 
